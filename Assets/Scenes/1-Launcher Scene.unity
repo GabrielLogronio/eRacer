@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f38fabd27c69d4cad587699498098d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayersPerRoom: 2
+  maxPlayersPerRoom: 3
   launcherPanel: {fileID: 223852427}
   progressText: {fileID: 358034120}
 --- !u!1 &1658175937

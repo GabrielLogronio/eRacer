@@ -32,19 +32,14 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     void Awake()
     {
-        if (PhotonNetwork.IsMasterClient) 
+        if (PhotonNetwork.IsMasterClient)
         {
             if (_instance == null) _instance = this;
             else Destroy(this);
 
             StartButton.SetActive(true);
-
-            GameObject panel = PhotonNetwork.Instantiate("PlayerPanelPrefab", new Vector3(0, 0, 0), Quaternion.identity);
-            panel.transform.SetParent(PlayersPanel.transform.GetChild(0));
-            panel.transform.GetChild(0).GetComponent<Text>().text = PhotonNetwork.NickName;
-            panel.transform.localPosition = Vector3.zero;
-
         }
+        PopulatePanel();
     }
 
     #endregion
@@ -59,17 +54,16 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player other)
     {
-        // Debug.LogFormat("Player " + other.NickName + " entered the room."); // not seen if you're the player connecting
-        GameObject panel = PhotonNetwork.Instantiate("PlayerPanelPrefab", new Vector3(0, 0, 0), Quaternion.identity);
-        panel.transform.SetParent(PlayersPanel.transform.GetChild(PhotonNetwork.CurrentRoom.PlayerCount -1));
-        panel.transform.GetChild(0).GetComponent<Text>().text = other.NickName;
-        panel.transform.localPosition = Vector3.zero;
+        ClearPanel();
+        if (PhotonNetwork.IsMasterClient)
+            PopulatePanel();
     }
 
     public override void OnPlayerLeftRoom(Player other)
     {
-        Debug.LogFormat("Player " + other.NickName + " left the room."); // not seen if you're the player connecting
-
+        ClearPanel();
+        if (PhotonNetwork.IsMasterClient)
+            PopulatePanel();
     }
 
     #endregion
@@ -100,6 +94,29 @@ public class RoomManager : MonoBehaviourPunCallbacks
     #endregion
 
     #region Private Methods
+
+    void ClearPanel() 
+    {
+        for (int i = 0; i < PlayersPanel.transform.childCount; i++) 
+        {
+            foreach (Transform child in PlayersPanel.transform.GetChild(i))
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+        } 
+    }
+
+    void PopulatePanel() 
+    {
+        Debug.Log("Populating Panel");
+        foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values) 
+        {
+            GameObject panel = PhotonNetwork.Instantiate("PlayerPanelPrefab", new Vector3(0, 0, 0), Quaternion.identity);
+            panel.transform.SetParent(PlayersPanel.transform.GetChild(player.ActorNumber - 1));
+            panel.transform.GetChild(0).GetComponent<Text>().text = player.NickName;
+            panel.transform.localPosition = Vector3.zero;
+        }
+    }
 
     #endregion
 
