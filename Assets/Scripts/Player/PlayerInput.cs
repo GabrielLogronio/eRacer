@@ -15,41 +15,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""PlayerMovement"",
             ""id"": ""b8bd3272-008a-4600-8eb2-c64148624d5b"",
             ""actions"": [
-                {
-                    ""name"": ""Shoot"",
-                    ""type"": ""Button"",
-                    ""id"": ""2adafc12-304d-4dfe-a2a9-6829598c8da3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""1st Skill"",
-                    ""type"": ""Button"",
-                    ""id"": ""3dc494b8-1574-41cd-bee8-86094c37420e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""2nd Skill"",
-                    ""type"": ""Button"",
-                    ""id"": ""057cc26e-5931-4fd9-a09b-3d1cd9fafcfc"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""3rd Skill"",
-                    ""type"": ""Button"",
-                    ""id"": ""07ad19ca-2c07-4dd6-afa9-e7d4ba0701eb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
                 {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
@@ -94,72 +62,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""4e3ba56b-f257-4ed2-8e75-e56082eb8154"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mose+Keyboard"",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""715fd6a2-c780-40f2-8828-428d3f93b8c9"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""884a0930-4ad5-4432-97d7-b60ab1b3bc8b"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mose+Keyboard"",
-                    ""action"": ""1st Skill"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d6d2b1f7-eeca-4c7b-ac79-fb32ce4894cd"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""1st Skill"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""910a72d9-d755-4855-b4e4-cbedbe7efe40"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mose+Keyboard"",
-                    ""action"": ""2nd Skill"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3a76fd0f-660c-47a4-ba24-114dfe10b30c"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""2nd Skill"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""b663c1a4-778c-4b74-af19-52b4846f0906"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -199,28 +101,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Turbo"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f4a6f561-6705-40ba-b160-2fb0d1180384"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mose+Keyboard"",
-                    ""action"": ""3rd Skill"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d734a91d-c2bd-4c7e-b9b5-ca80cd4a8852"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""3rd Skill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -379,6 +259,90 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerSkills"",
+            ""id"": ""d5fb48cc-34b7-4a1b-a2f0-bc3eeb93f611"",
+            ""actions"": [
+                {
+                    ""name"": ""FirstSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""91a6ff7b-e228-4d66-8dde-31fedbaeaaf4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SecondSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""86803aef-ac3b-4abd-9646-b221b4f460fc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ThirdSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""7cb11ad0-9f68-4c80-b671-909f85ed4ce1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d0ad7ef-036f-44e2-b28c-e9ec09d35628"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""71620b96-1a87-4101-9010-fdebc364ffa9"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mose+Keyboard"",
+                    ""action"": ""FirstSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58ac9dcf-d1de-400b-b813-83d2ce9c1b58"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mose+Keyboard"",
+                    ""action"": ""SecondSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8fa11e20-c7e3-4e41-b627-7197074b28db"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mose+Keyboard"",
+                    ""action"": ""ThirdSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2ade3ff-2456-40c1-b237-c66a574fba6d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mose+Keyboard"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -411,17 +375,19 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         }
     ]
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
-        m_Player__1stSkill = m_Player.FindAction("1st Skill", throwIfNotFound: true);
-        m_Player__2ndSkill = m_Player.FindAction("2nd Skill", throwIfNotFound: true);
-        m_Player__3rdSkill = m_Player.FindAction("3rd Skill", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Turbo = m_Player.FindAction("Turbo", throwIfNotFound: true);
-        m_Player_MaxTurbo = m_Player.FindAction("MaxTurbo", throwIfNotFound: true);
-        m_Player_Accelerate = m_Player.FindAction("Accelerate", throwIfNotFound: true);
-        m_Player_Steer = m_Player.FindAction("Steer", throwIfNotFound: true);
+        // PlayerMovement
+        m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
+        m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerMovement_Turbo = m_PlayerMovement.FindAction("Turbo", throwIfNotFound: true);
+        m_PlayerMovement_MaxTurbo = m_PlayerMovement.FindAction("MaxTurbo", throwIfNotFound: true);
+        m_PlayerMovement_Accelerate = m_PlayerMovement.FindAction("Accelerate", throwIfNotFound: true);
+        m_PlayerMovement_Steer = m_PlayerMovement.FindAction("Steer", throwIfNotFound: true);
+        // PlayerSkills
+        m_PlayerSkills = asset.FindActionMap("PlayerSkills", throwIfNotFound: true);
+        m_PlayerSkills_FirstSkill = m_PlayerSkills.FindAction("FirstSkill", throwIfNotFound: true);
+        m_PlayerSkills_SecondSkill = m_PlayerSkills.FindAction("SecondSkill", throwIfNotFound: true);
+        m_PlayerSkills_ThirdSkill = m_PlayerSkills.FindAction("ThirdSkill", throwIfNotFound: true);
+        m_PlayerSkills_Shoot = m_PlayerSkills.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -468,83 +434,51 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Shoot;
-    private readonly InputAction m_Player__1stSkill;
-    private readonly InputAction m_Player__2ndSkill;
-    private readonly InputAction m_Player__3rdSkill;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Turbo;
-    private readonly InputAction m_Player_MaxTurbo;
-    private readonly InputAction m_Player_Accelerate;
-    private readonly InputAction m_Player_Steer;
-    public struct PlayerActions
+    // PlayerMovement
+    private readonly InputActionMap m_PlayerMovement;
+    private IPlayerMovementActions m_PlayerMovementActionsCallbackInterface;
+    private readonly InputAction m_PlayerMovement_Jump;
+    private readonly InputAction m_PlayerMovement_Turbo;
+    private readonly InputAction m_PlayerMovement_MaxTurbo;
+    private readonly InputAction m_PlayerMovement_Accelerate;
+    private readonly InputAction m_PlayerMovement_Steer;
+    public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
-        public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
-        public InputAction @_1stSkill => m_Wrapper.m_Player__1stSkill;
-        public InputAction @_2ndSkill => m_Wrapper.m_Player__2ndSkill;
-        public InputAction @_3rdSkill => m_Wrapper.m_Player__3rdSkill;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Turbo => m_Wrapper.m_Player_Turbo;
-        public InputAction @MaxTurbo => m_Wrapper.m_Player_MaxTurbo;
-        public InputAction @Accelerate => m_Wrapper.m_Player_Accelerate;
-        public InputAction @Steer => m_Wrapper.m_Player_Steer;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public PlayerMovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
+        public InputAction @Turbo => m_Wrapper.m_PlayerMovement_Turbo;
+        public InputAction @MaxTurbo => m_Wrapper.m_PlayerMovement_MaxTurbo;
+        public InputAction @Accelerate => m_Wrapper.m_PlayerMovement_Accelerate;
+        public InputAction @Steer => m_Wrapper.m_PlayerMovement_Steer;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerActions instance)
+        public static implicit operator InputActionMap(PlayerMovementActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerMovementActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerMovementActionsCallbackInterface != null)
             {
-                @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @_1stSkill.started -= m_Wrapper.m_PlayerActionsCallbackInterface.On_1stSkill;
-                @_1stSkill.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.On_1stSkill;
-                @_1stSkill.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.On_1stSkill;
-                @_2ndSkill.started -= m_Wrapper.m_PlayerActionsCallbackInterface.On_2ndSkill;
-                @_2ndSkill.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.On_2ndSkill;
-                @_2ndSkill.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.On_2ndSkill;
-                @_3rdSkill.started -= m_Wrapper.m_PlayerActionsCallbackInterface.On_3rdSkill;
-                @_3rdSkill.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.On_3rdSkill;
-                @_3rdSkill.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.On_3rdSkill;
-                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Turbo.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurbo;
-                @Turbo.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurbo;
-                @Turbo.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurbo;
-                @MaxTurbo.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMaxTurbo;
-                @MaxTurbo.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMaxTurbo;
-                @MaxTurbo.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMaxTurbo;
-                @Accelerate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAccelerate;
-                @Accelerate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAccelerate;
-                @Accelerate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAccelerate;
-                @Steer.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteer;
-                @Steer.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteer;
-                @Steer.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteer;
+                @Jump.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnJump;
+                @Turbo.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnTurbo;
+                @Turbo.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnTurbo;
+                @Turbo.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnTurbo;
+                @MaxTurbo.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMaxTurbo;
+                @MaxTurbo.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMaxTurbo;
+                @MaxTurbo.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMaxTurbo;
+                @Accelerate.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAccelerate;
+                @Accelerate.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAccelerate;
+                @Accelerate.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnAccelerate;
+                @Steer.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSteer;
+                @Steer.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSteer;
+                @Steer.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSteer;
             }
-            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Shoot.started += instance.OnShoot;
-                @Shoot.performed += instance.OnShoot;
-                @Shoot.canceled += instance.OnShoot;
-                @_1stSkill.started += instance.On_1stSkill;
-                @_1stSkill.performed += instance.On_1stSkill;
-                @_1stSkill.canceled += instance.On_1stSkill;
-                @_2ndSkill.started += instance.On_2ndSkill;
-                @_2ndSkill.performed += instance.On_2ndSkill;
-                @_2ndSkill.canceled += instance.On_2ndSkill;
-                @_3rdSkill.started += instance.On_3rdSkill;
-                @_3rdSkill.performed += instance.On_3rdSkill;
-                @_3rdSkill.canceled += instance.On_3rdSkill;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -563,7 +497,64 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             }
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
+    public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+
+    // PlayerSkills
+    private readonly InputActionMap m_PlayerSkills;
+    private IPlayerSkillsActions m_PlayerSkillsActionsCallbackInterface;
+    private readonly InputAction m_PlayerSkills_FirstSkill;
+    private readonly InputAction m_PlayerSkills_SecondSkill;
+    private readonly InputAction m_PlayerSkills_ThirdSkill;
+    private readonly InputAction m_PlayerSkills_Shoot;
+    public struct PlayerSkillsActions
+    {
+        private @PlayerInput m_Wrapper;
+        public PlayerSkillsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @FirstSkill => m_Wrapper.m_PlayerSkills_FirstSkill;
+        public InputAction @SecondSkill => m_Wrapper.m_PlayerSkills_SecondSkill;
+        public InputAction @ThirdSkill => m_Wrapper.m_PlayerSkills_ThirdSkill;
+        public InputAction @Shoot => m_Wrapper.m_PlayerSkills_Shoot;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerSkills; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerSkillsActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerSkillsActions instance)
+        {
+            if (m_Wrapper.m_PlayerSkillsActionsCallbackInterface != null)
+            {
+                @FirstSkill.started -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnFirstSkill;
+                @FirstSkill.performed -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnFirstSkill;
+                @FirstSkill.canceled -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnFirstSkill;
+                @SecondSkill.started -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnSecondSkill;
+                @SecondSkill.performed -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnSecondSkill;
+                @SecondSkill.canceled -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnSecondSkill;
+                @ThirdSkill.started -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnThirdSkill;
+                @ThirdSkill.performed -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnThirdSkill;
+                @ThirdSkill.canceled -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnThirdSkill;
+                @Shoot.started -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_PlayerSkillsActionsCallbackInterface.OnShoot;
+            }
+            m_Wrapper.m_PlayerSkillsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @FirstSkill.started += instance.OnFirstSkill;
+                @FirstSkill.performed += instance.OnFirstSkill;
+                @FirstSkill.canceled += instance.OnFirstSkill;
+                @SecondSkill.started += instance.OnSecondSkill;
+                @SecondSkill.performed += instance.OnSecondSkill;
+                @SecondSkill.canceled += instance.OnSecondSkill;
+                @ThirdSkill.started += instance.OnThirdSkill;
+                @ThirdSkill.performed += instance.OnThirdSkill;
+                @ThirdSkill.canceled += instance.OnThirdSkill;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+            }
+        }
+    }
+    public PlayerSkillsActions @PlayerSkills => new PlayerSkillsActions(this);
     private int m_MoseKeyboardSchemeIndex = -1;
     public InputControlScheme MoseKeyboardScheme
     {
@@ -582,16 +573,19 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
-    public interface IPlayerActions
+    public interface IPlayerMovementActions
     {
-        void OnShoot(InputAction.CallbackContext context);
-        void On_1stSkill(InputAction.CallbackContext context);
-        void On_2ndSkill(InputAction.CallbackContext context);
-        void On_3rdSkill(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnTurbo(InputAction.CallbackContext context);
         void OnMaxTurbo(InputAction.CallbackContext context);
         void OnAccelerate(InputAction.CallbackContext context);
         void OnSteer(InputAction.CallbackContext context);
+    }
+    public interface IPlayerSkillsActions
+    {
+        void OnFirstSkill(InputAction.CallbackContext context);
+        void OnSecondSkill(InputAction.CallbackContext context);
+        void OnThirdSkill(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }
