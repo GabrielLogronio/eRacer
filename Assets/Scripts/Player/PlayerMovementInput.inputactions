@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "PlayerMovementInput",
     "maps": [
         {
             "name": "PlayerMovement",
@@ -244,90 +244,6 @@
                     "action": "Steer",
                     "isComposite": false,
                     "isPartOfComposite": true
-                }
-            ]
-        },
-        {
-            "name": "PlayerSkills",
-            "id": "d5fb48cc-34b7-4a1b-a2f0-bc3eeb93f611",
-            "actions": [
-                {
-                    "name": "FirstSkill",
-                    "type": "Button",
-                    "id": "91a6ff7b-e228-4d66-8dde-31fedbaeaaf4",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "SecondSkill",
-                    "type": "Button",
-                    "id": "86803aef-ac3b-4abd-9646-b221b4f460fc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "ThirdSkill",
-                    "type": "Button",
-                    "id": "7cb11ad0-9f68-4c80-b671-909f85ed4ce1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Shoot",
-                    "type": "Button",
-                    "id": "3d0ad7ef-036f-44e2-b28c-e9ec09d35628",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "71620b96-1a87-4101-9010-fdebc364ffa9",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mose+Keyboard",
-                    "action": "FirstSkill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "58ac9dcf-d1de-400b-b813-83d2ce9c1b58",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mose+Keyboard",
-                    "action": "SecondSkill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8fa11e20-c7e3-4e41-b627-7197074b28db",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mose+Keyboard",
-                    "action": "ThirdSkill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c2ade3ff-2456-40c1-b237-c66a574fba6d",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mose+Keyboard",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }

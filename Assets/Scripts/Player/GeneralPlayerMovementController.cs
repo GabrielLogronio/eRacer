@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 using Photon.Pun;
 
-public class GeneralPlayerController : MonoBehaviourPun
+public class GeneralPlayerMovementController : MonoBehaviourPun
 {
     #region Character attributes
 
@@ -36,7 +36,7 @@ public class GeneralPlayerController : MonoBehaviourPun
     [Header("Turbo Speed")]
     [Tooltip("The multiplayer applied to the turbo. [1.5 ... 4]")]
     [SerializeField]
-    protected float charTurbo = 3f;
+    protected float charTurbo = 2f;
 
 
     [Header("Max Speed")]
@@ -61,11 +61,6 @@ public class GeneralPlayerController : MonoBehaviourPun
     [SerializeField]
     protected float charJump = 50f;
 
-    [Header("Character Skills")]
-    [Tooltip("The skills of the character")]
-    [SerializeField]
-    protected GeneralSkill FirstSkill, SecondSkill, ThirdSkill;
-
     [SerializeField]
     protected Slider turboBarSlider;
 
@@ -77,7 +72,7 @@ public class GeneralPlayerController : MonoBehaviourPun
     #region Control Variables
 
     protected Animator anim;
-    protected PlayerInput playerInput;
+    protected PlayerMovementInput playerMovementInput;
     protected BoxCollider boxColl;
     protected Rigidbody controlRB;
 
@@ -87,7 +82,7 @@ public class GeneralPlayerController : MonoBehaviourPun
 
     protected LayerMask groundLayer;
 
-    protected bool grounded = false, onMaxTurbo, turboBlock = false;
+    protected bool grounded = false, onMaxTurbo = false, onTurbo = false, turboBlock = false;
 
     #endregion
 
@@ -105,14 +100,13 @@ public class GeneralPlayerController : MonoBehaviourPun
         currentHP = charMaxHP;
 
         groundLayer = 1 << LayerMask.NameToLayer("Ground");
-        FirstSkill.Unlock();
     }
 
     protected void Update()
     {
         forwardVelocity = Vector3.Dot(controlRB.velocity, transform.forward);
 
-        if (grounded) 
+        if (grounded)
         {
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, currentSteerInput * charSteer * Time.deltaTime * forwardVelocity, 0f));
         }
@@ -142,7 +136,7 @@ public class GeneralPlayerController : MonoBehaviourPun
 
         if (!grounded)
         {
-            controlRB.AddForce(transform.up * charWeight * - 100f);
+            controlRB.AddForce(transform.up * charWeight * -100f);
         }
 
         DampVelocity();
@@ -150,85 +144,85 @@ public class GeneralPlayerController : MonoBehaviourPun
 
     protected void OnEnable()
     {
-        playerInput.Enable();
+        playerMovementInput.Enable();
     }
 
     protected void OnDisable()
     {
-        playerInput.Disable();
+        playerMovementInput.Disable();
     }
 
     #endregion
 
     #region Utility Methods
 
-    public bool IsGrounded() 
+    public bool IsGrounded()
     {
         return grounded;
     }
 
-    protected void CheckGround() 
+    protected void CheckGround()
     {
         grounded = Physics.CheckBox(boxColl.bounds.center - transform.up * boxColl.size.y / 4f, new Vector3(boxColl.size.x * 0.45f, boxColl.size.y / 3f, boxColl.size.z * 0.45f), Quaternion.identity, groundLayer);
     }
 
-    protected void UpdateTurbo() 
+    protected void UpdateTurbo()
     {
-        if (currentTurbo == 1f)
+        if (!onMaxTurbo)
         {
-            if (currentTP < charMaxTP && !turboBlock) currentTP += Time.deltaTime * 5f;
-
-        }
-        else 
-        {
-            currentTP -= Time.deltaTime * 10f;
-            if (currentTP <= 0f)
+            if (onTurbo)
             {
-                currentTP = 0f;
-                currentTurbo = 1f;
-                turboBlock = true;
-                Invoke("UnlockTurbo", 2f);
+                currentTP -= Time.deltaTime * 10f;
+                if (currentTP <= 0f)
+                {
+                    currentTP = 0f;
+                    currentTurbo = 1f;
+                    turboBlock = true;
+                    Invoke("UnlockTurbo", 2f);
+                }
+            }
+            else
+            {
+                if (currentTP < charMaxTP && !turboBlock) currentTP += Time.deltaTime * 5f;
+
             }
         }
+
         turboBarSlider.value = currentTP / charMaxTP;
         turboBarText.text = (int)currentTP + " / " + charMaxTP;
     }
-    protected void UnlockTurbo() 
+    protected void UnlockTurbo()
     {
         turboBlock = false;
     }
 
-    protected void SetupInput() 
+    protected void SetupInput()
     {
-        playerInput = new PlayerInput();
+        playerMovementInput = new PlayerMovementInput();
 
-        playerInput.PlayerMovement.Jump.performed += _ => Jump();
+        playerMovementInput.PlayerMovement.Jump.performed += _ => Jump();
 
-        playerInput.PlayerMovement.Turbo.performed += _ => TurboStart();
-        playerInput.PlayerMovement.Turbo.canceled += _ => TurboEnd();
-        playerInput.PlayerMovement.MaxTurbo.performed += _ => MaxTurbo();
+        playerMovementInput.PlayerMovement.Turbo.performed += _ => TurboStart();
+        playerMovementInput.PlayerMovement.Turbo.canceled += _ => TurboEnd();
+        playerMovementInput.PlayerMovement.MaxTurbo.performed += _ => MaxTurbo();
 
-        playerInput.PlayerMovement.Accelerate.performed += ctx => Accelerate(ctx.ReadValue<float>());
-        playerInput.PlayerMovement.Accelerate.canceled += _ => Accelerate();
-        playerInput.PlayerMovement.Steer.performed += ctx => Steer(ctx.ReadValue<float>());
-        playerInput.PlayerMovement.Steer.canceled += _ => Steer();
-
-        playerInput.PlayerSkills.FirstSkill.performed += _ => FirstSkillPressed();
-        playerInput.PlayerSkills.FirstSkill.canceled += _ => FirstSkillReleased();
-
-        playerInput.PlayerSkills.SecondSkill.performed += _ => SecondSkillPressed();
-        playerInput.PlayerSkills.SecondSkill.canceled += _ => SecondSkillReleased();
-
-        playerInput.PlayerSkills.ThirdSkill.performed += _ => ThirdSkillPressed();
-        playerInput.PlayerSkills.ThirdSkill.canceled += _ => ThirdSkillReleased();
+        playerMovementInput.PlayerMovement.Accelerate.performed += ctx => Accelerate(ctx.ReadValue<float>());
+        playerMovementInput.PlayerMovement.Accelerate.canceled += _ => Accelerate();
+        playerMovementInput.PlayerMovement.Steer.performed += ctx => Steer(ctx.ReadValue<float>());
+        playerMovementInput.PlayerMovement.Steer.canceled += _ => Steer();
 
     }
 
-    protected void DampVelocity() 
-    { 
+    protected void Respawn()
+    {
+        // To Implement
+    }
+
+    protected void DampVelocity()
+    {
         Vector2 horVelocity = new Vector2(controlRB.velocity.x, controlRB.velocity.z);
 
-        if (horVelocity.magnitude > charSpeed && currentTurbo == 1f) 
+        if (horVelocity.magnitude > charSpeed && !onTurbo && !onMaxTurbo)
         {
             if (forwardVelocity > 0)
                 horVelocity = horVelocity.normalized * charSpeed;
@@ -237,24 +231,68 @@ public class GeneralPlayerController : MonoBehaviourPun
 
             controlRB.velocity = new Vector3(horVelocity.x, controlRB.velocity.y, horVelocity.y);
         }
+    }
 
+    #endregion
+
+    #region Public Methods
+
+    public void AffectHP(float value)
+    {
+        currentHP += value;
+        if (currentHP > charMaxHP) currentHP = charMaxHP;
+        else if (currentHP < 0f) Respawn();
+    }
+
+    public void AffectTP(float value)
+    {
+        currentTP += value;
+        if (currentTP > charMaxTP) currentTP = charMaxTP;
+        else if (currentTP < 0f)
+        {
+            currentTP = 0f;
+            currentTurbo = 1f;
+            turboBlock = true;
+            Invoke("UnlockTurbo", 2f);
+        }
+    }
+    public void AffectMaxSpeed(float value, float duration)
+    {
+        charSpeed += value;
+        // Used coroutine instead of Invoke to pass a parameter
+        StartCoroutine(EndMaxSpeedEffect(value, duration));
+    }
+
+    IEnumerator EndMaxSpeedEffect(float value, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        charSpeed -= value;
+    }
+
+    public void Displace(Vector3 direction, float pushForce)
+    {
+        controlRB.velocity = direction * pushForce;
     }
 
     #endregion
 
     #region Player Actions
 
-    protected void TurboStart() 
+    protected void TurboStart()
     {
-        if(!turboBlock && !onMaxTurbo)
-            currentTurbo = charTurbo;
+        if (!turboBlock && !onMaxTurbo)
+        {
+            currentTurbo += charTurbo;
+            onTurbo = true;
+        }
     }
 
     protected void TurboEnd()
     {
-        if (currentTurbo != 1f) 
+        if (onTurbo)
         {
-            currentTurbo = 1f;
+            currentTurbo -= charTurbo;
+            onTurbo = false;
             turboBlock = true;
             Invoke("UnlockTurbo", .75f);
         }
@@ -262,7 +300,7 @@ public class GeneralPlayerController : MonoBehaviourPun
 
     protected void MaxTurbo()
     {
-        if (currentTP >= 50f && !onMaxTurbo) 
+        if (currentTP >= 50f && !onMaxTurbo)
         {
             currentTP -= 50f;
 
@@ -270,28 +308,26 @@ public class GeneralPlayerController : MonoBehaviourPun
             horVelocity *= maxTurbo;
             controlRB.velocity = new Vector3(horVelocity.x, controlRB.velocity.y, horVelocity.y);
 
-            charSpeed *= maxTurbo;
-            charAcceleration *= maxTurbo;
+            charSpeed += maxTurbo;
 
             onMaxTurbo = true;
 
-            Invoke("EndTurbo", turboDuration);
+            Invoke("MaxTurboEnd", turboDuration);
         }
     }
 
-    protected void EndTurbo() 
+    protected void MaxTurboEnd()
     {
         onMaxTurbo = false;
         charSpeed /= maxTurbo;
-        charAcceleration /= maxTurbo;
     }
 
-    protected void Jump() 
+    protected void Jump()
     {
         if (grounded) controlRB.velocity = new Vector3(controlRB.velocity.x, charJump, controlRB.velocity.z);
     }
 
-    protected void Accelerate(float direction) 
+    protected void Accelerate(float direction)
     {
         currentAccelerationInput = direction;
     }
@@ -311,34 +347,21 @@ public class GeneralPlayerController : MonoBehaviourPun
         currentSteerInput = 0f;
     }
 
-    protected void FirstSkillPressed()
+    protected void Aim(bool activated) 
     {
-        FirstSkill.Activate();
+        if (activated)
+        {
+
+        }
+        else 
+        { 
+        
+        }
     }
 
-    protected void FirstSkillReleased()
-    {
-        FirstSkill.Deactivate();
-    }
-
-    protected void SecondSkillPressed()
-    {
-        SecondSkill.Activate();
-    }
-
-    protected void SecondSkillReleased()
-    {
-        SecondSkill.Deactivate();
-    }
-
-    protected void ThirdSkillPressed()
-    {
-        ThirdSkill.Activate();
-    }
-
-    protected void ThirdSkillReleased()
-    {
-        ThirdSkill.Deactivate();
+    protected void Center() 
+    { 
+    
     }
 
     #endregion
