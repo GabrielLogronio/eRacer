@@ -1,0 +1,2 @@
+1. When a player leaves a room, doesn't get updates on new rooms (doesn't join lobby?)
+2. Actor number doesn't change
